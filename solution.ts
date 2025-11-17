@@ -33,4 +33,104 @@ class Person {
   }
 }
 
+type MyBook = {
+  title: string;
+  rating: number;
+};
+const filterByRating = (ar: MyBook[]): MyBook[] => {
+  return ar.filter((book) => book.rating >= 4);
+};
+
+const books = [
+  { title: "Book A", rating: 4.5 },
+  { title: "Book B", rating: 3.2 },
+  { title: "Book C", rating: 5.0 },
+];
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+};
+const filterActiveUsers = (users: User[]): User[] => {
+  return users.filter((user) => user.isActive === true);
+};
+
+const users = [
+  { id: 1, name: "Rakib", email: "rakib@example.com", isActive: true },
+  { id: 2, name: "Asha", email: "asha@example.com", isActive: false },
+  { id: 3, name: "Rumi", email: "rumi@example.com", isActive: true },
+];
+
+interface Book {
+  title: string;
+  author: string;
+  publishedYear: number;
+  isAvailable: boolean;
+}
+
+const printBookDetails = (book: Book) => {
+  const { title, author, publishedYear, isAvailable } = book;
+  console.log(
+    `Title: ${title}, Author: ${author}, Published: ${publishedYear}, Available: ${
+      isAvailable ? "Yes" : "No"
+    }`
+  );
+};
+
+const getUniqueValues = (
+  v1: (number | string)[],
+  v2: (number | string)[]
+): (number | string)[] => {
+  const vis: (number | string)[] = [];
+  const ans: (number | string)[] = [];
+
+  for (let i = 0; i < v1.length; i++) {
+    let f: boolean = false;
+    for (let j = 0; j < vis.length; j++) {
+      if (vis[j] == v1[i]) {
+        f = true;
+        break;
+      }
+    }
+    if (!f) {
+      vis.push(v1[i]);
+      ans.push(v1[i]);
+    }
+  }
+  for (let i = 0; i < v2.length; i++) {
+    let f: boolean = false;
+    for (let j = 0; j < vis.length; j++) {
+      if (vis[j] == v2[i]) {
+        f = true;
+        break;
+      }
+    }
+    if (!f) {
+      vis.push(v2[i]);
+      ans.push(v2[i]);
+    }
+  }
+  return ans;
+};
+
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+
+const calculateTotalPrice = (products: Product[]): number => {
+  if (products.length === 0) return 0;
+  const prices = products.map((p) => {
+    const cost = p.price * p.quantity;
+    const dis = p.discount ? (cost * p.discount) / 100 : 0;
+    return cost - dis;
+  });
+  const total = prices.reduce((sum, val) => sum + val, 0);
+  return total;
+};
+
 
