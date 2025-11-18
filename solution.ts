@@ -33,9 +33,10 @@ class Person {
   }
 }
 
+type Rating = 1 | 2 | 3 | 4 | 5;
 type MyBook = {
   title: string;
-  rating: number;
+  rating: Rating;
 };
 const filterByRating = (ar: MyBook[]): MyBook[] => {
   return ar.filter((book) => book.rating >= 4);
